@@ -6,6 +6,7 @@ cd qtm350-quiz01
 touch commands.txt
 # 5
 git checkout -b feature-update
+# OUTCOME: Switched to a new branch 'feature-update'
 # 6
 mkdir reports
 # 7
@@ -15,7 +16,10 @@ echo "This document provides a summary of the project updates." > reports/summar
 # 9
 git add reports
 # 10
-git commit -m "Add reports directory"  
+git commit -m "Add reports directory"
+# OUTCOME: [feature-update 43c3299] Add reports directory
+ 1 file changed, 1 insertion(+)
+ create mode 100644 reports/summary.md
 # 11
 touch reports/file{1,2,3}.txt
 # 12
@@ -24,8 +28,21 @@ git mv data/raw-data.csv data/input-data.csv
 mkdir scripts/backup && cp scripts/*.py scripts/backup/
 # 14
 git rm docs/documentation.md
+# OUTCOME: rm 'docs/documentation.md'
 # 15
 git add . && git commit -m "Update project files"
+# OUTCOME: feature-update d0bb1d2] Update project files
+ 10 files changed, 19 insertions(+), 1 deletion(-)
+ create mode 100644 command.ipynb
+ rename data/raw-data.csv => commands.txt (100%)
+ create mode 100644 data/input-data.csv
+ delete mode 100644 docs/documentation.md
+ create mode 100644 reports/file1.txt
+ create mode 100644 reports/file2.txt
+ create mode 100644 reports/file3.txt
+ create mode 100644 scripts/backup/01-setup.py
+ create mode 100644 scripts/backup/02-data-cleaning.py
+ create mode 100644 scripts/backup/03-data-modelling.py
 # 16 
 touch .gitignore
 # 17 
@@ -33,10 +50,73 @@ echo "temp/" >> .gitignore
 echo "dataset0?.csv" >> .gitignore
 # 18 
 cat .gitignore
+# OUTCOME: temp/
+dataset0?.csv
 # 19 
 git add .gitignore && git commit -m "Add .gitignore file"
+# OUTCOME: [feature-update af86bcc] Add .gitignore file
+ 1 file changed, 2 insertions(+)
+ create mode 100644 .gitignore
 # 20 
 git checkout main
+# OUTCOME: Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
 git merge feature-update
+# OUTCOME: Updating 4ba1160..af86bcc
+Fast-forward
+ .gitignore                          |  2 ++
+ command.ipynb                       | 19 +++++++++++++++++++
+ data/raw-data.csv => commands.txt   |  0
+ data/input-data.csv                 |  0
+ docs/documentation.md               |  1 -
+ reports/file1.txt                   |  0
+ reports/file2.txt                   |  0
+ reports/file3.txt                   |  0
+ reports/summary.md                  |  1 +
+ scripts/backup/01-setup.py          |  0
+ scripts/backup/02-data-cleaning.py  |  0
+ scripts/backup/03-data-modelling.py |  0
+ 12 files changed, 22 insertions(+), 1 deletion(-)
+ create mode 100644 .gitignore
+ create mode 100644 command.ipynb
+ rename data/raw-data.csv => commands.txt (100%)
+ create mode 100644 data/input-data.csv
+ delete mode 100644 docs/documentation.md
+ create mode 100644 reports/file1.txt
+ create mode 100644 reports/file2.txt
+ create mode 100644 reports/file3.txt
+ create mode 100644 reports/summary.md
+ create mode 100644 scripts/backup/01-setup.py
+ create mode 100644 scripts/backup/02-data-cleaning.py
+ create mode 100644 scripts/backup/03-data-modelling.py
 # 21 
 git add commands.txt && git commit -m "Document all Git and shell commands used in commands.txt" && git push origin main
+# OUTCOME: main 633b117] Document all Git and shell commands used in commands.txt
+ 1 file changed, 42 insertions(+)
+Enumerating objects: 19, done.
+Counting objects: 100% (19/19), done.
+Delta compression using up to 10 threads
+Compressing objects: 100% (13/13), done.
+Writing objects: 100% (16/16), 2.19 KiB | 2.19 MiB/s, done.
+Total 16 (delta 3), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (3/3), completed with 1 local object.
+To https://github.com/tiffanywickens/qtm350-quiz01.git
+   4ba1160..633b117  main -> main
+
+# BONUS QUESTIONS
+
+# 1
+git remote -v
+# OUTCOME: origin  https://github.com/tiffanywickens/qtm350-quiz01.git (fetch)
+origin  https://github.com/tiffanywickens/qtm350-quiz01.git (push)
+upstream        https://github.com/danilofreire/qtm350-quiz01.git (fetch)
+upstream        https://github.com/danilofreire/qtm350-quiz01.git (push)
+git fetch upstream && git checkout main && git merge upstream/main 
+# OUTCOME: D       command.ipynb
+M       commands.txt
+Already on 'main'
+Your branch is up to date with 'origin/main'.
+Already up to date.
+git push origin main
+# OUTCOME: Everything up-to-date
+# ATTEMPTED NOT COMPLETED
